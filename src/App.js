@@ -3,9 +3,9 @@ import { gql } from '@apollo/client';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import React, {useState} from 'react'
 function App() {
-
+  var [data,setData] = useState([])
   const onGetData = () => {
-    var [data,setData] = useState([])
+    
     var ar = [...data]
     const client = new ApolloClient({
       uri: 'http://localhost:8080/query',
@@ -41,20 +41,18 @@ function App() {
         setData(ar);
     }
       );
-  };
-  
 
-  const list = data.map(element=>{
-    return <li>{element}</li>
-  })
-  return (
-    <div className="App">
-        <ButtonGetData onGetData = {onGetData}/>
-        <ul>
-            {list}
-        </ul>
-    </div>
-  );
 }
-
+const list = data.map(element=>{
+  return <li>{element}</li>
+})
+return (
+  <div className="App">
+      <ButtonGetData onGetData = {onGetData}/>
+      <ul>
+          {list}
+      </ul>
+  </div>
+);
+};
 export default App;
